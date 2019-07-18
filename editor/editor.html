@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>Editor de Texto</title>
+	<link type="text/css" rel="stylesheet" href="css/estilos.css"/>
+
+	<style>
+	input{
+	border:0px none solid #000;
+	background:#CCCCCC;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:15px;
+	margin-bottom:3px;
+	}
+
+	h1 {
+		color: white;
+		text-align: center;
+		}
+
+	</style>
+
+	<script>
+	var editor;
+	function $(id){
+		return document.getElementById(id);
+	}
+	function formato(f){
+		editor.execCommand(f, false, null);
+	}
+	function rev(t)    {
+		return t.split("<").join("&lt;").split(">").join("&gt;").split("\"").join("&quot;");
+	}
+
+	function color(c){
+		editor.execCommand("forecolor",false,c);
+	}
+
+
+	function htmlOEditor(e){
+	e=e || window.event;
+	ob=e.target || e.srcElement
+	$('edit').style.display=(ob.value=='html')?'none':'block';
+	$('ht').style.display=(ob.value!='html')?'none':'block';
+	$('ht').innerHTML=rev(editor.body.innerHTML);
+	ob.value=(ob.value=='html')?'editor':'html';
+	}
+	window.onload=function(){
+		editor=$('edit').contentDocument || $('edit').contentWindow.document;
+		editor.designMode='on';
+	}
+	</script>
+	</head>
+
+<body bottommargin="0" topmargin="0" leftmargin="0" rightmargin="0">
+
+			<table class="nor">
+						 <th>
+                             <p> Editor de Texto </p>
+						 </th>
+
+			</table>
+
+
+	<form id="form1" name="form1" method="post" action="">
+			<center>
+			<table>
+				<tbody>
+				 <div>
+						<br>
+						  <input type="button" name="Submit" value="Negrita" onclick="formato('bold')" />
+						  <input type="button" name="Submit2" value="Justificar" onclick="formato('justifyFull')" />
+						  <input type="button" name="Submit4" value="Izquierda" onclick="formato('justifyLeft')" />
+						  <input type="button" name="Submit3" value="Centrar" onclick="formato('justifyCenter')" />
+						  <input type="button" name="Submit5" value="Derecha" onclick="formato('justifyRight')" />
+						  <input type="button" name="Submit7" value="Texto Rojo" onclick="color('#FF0000')" />
+						  <input type="button" name="Submit11" value="Rehacer" onclick="formato('redo')" />
+						  <input type="button" name="Submit10" value="Deshacer" onclick="formato('undo')" />
+						  <input type="button" name="Submit24" value="Aumentar T" onclick="formato('increaseFontSize')" />
+						  <input type="button" name="Submit33" value="Disminuir T" onclick="formato('decreaseFontSize')" />
+
+
+						 <br />
+
+				 </div>
+				</tbody>
+			</table>
+			 </center>
+
+
+		<center>
+		  <table class="norr">
+			<th>
+				<iframe id="edit" width="99%" height="470" style=" background-color: #EFEFEF; border:1px solid #000;"></iframe>
+			</th>
+		  </table>
+		 </center>
+
+
+
+
+	</form>
+</body>
+</html>
