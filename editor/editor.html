@@ -29,6 +29,20 @@
 	function formato(f){
 		editor.execCommand(f, false, null);
 	}
+
+	function formm() {
+			// e.preventDefault();
+			var tam_texto;
+			tam_texto = parseInt(document.getElementById('tamanyo').value);
+			document.getElementById('texto').style.fontSize = tam_texto + "pt";
+			var tipo_texto;
+			tipo_texto = document.getElementById('tipo').value;
+			document.getElementById('texto').style.fontFamily = tipo_texto;
+			var color_texto;
+			color_texto = document.getElementById('color').value;
+			document.getElementById('texto').style.color = color_texto;
+	}
+
 	function rev(t)    {
 		return t.split("<").join("&lt;").split(">").join("&gt;").split("\"").join("&quot;");
 	}
@@ -79,8 +93,6 @@
 						  <input type="button" name="Submit10" value="Deshacer" onclick="formato('undo')" />
 						  <input type="button" name="Submit24" value="Aumentar T" onclick="formato('increaseFontSize')" />
 						  <input type="button" name="Submit33" value="Disminuir T" onclick="formato('decreaseFontSize')" />
-
-
 						 <br />
 
 				 </div>
@@ -97,9 +109,7 @@
 		  </table>
 		 </center>
 
-
-
-
 	</form>
+
 </body>
 </html>
